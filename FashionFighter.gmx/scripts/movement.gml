@@ -7,5 +7,5 @@ if(sprite_index!=runSprite )
 input_moves_player()
 
 if(xKey) state=jump
-else if(zKey) state=attack
+else if(zKey and alarm[1]==-1) state=attack
 else if(hMove == 0 and vMove == 0) state=idle

@@ -6,5 +6,5 @@ if(sprite_index != idleSprite)
 } 
 
 if(xKey) state=jump
-else if(zKey) state=attack
+else if(zKey and alarm[1]==-1) state=attack
 else if(leftKey or rightKey or upKey or downKey) state=movement

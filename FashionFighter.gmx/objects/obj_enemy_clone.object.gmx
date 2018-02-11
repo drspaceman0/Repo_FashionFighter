@@ -30,21 +30,26 @@ movementFPS=0.4
 attackFPS=0.2
 image_speed=movementFPS;
 
-maxHealth=12
-hp=maxHealth
+sightDistance=256
+fightDistance=58
 
 attackDelay=room_speed
 
-moveSpd=6
-state=idle
+
+image_blend=make_colour_rgb(255,0,0)
+
+maxHealth=12
+hp=maxHealth
+
+moveSpd=3
+state=idle_enemy
 
 
 isInAir=false
 velocityH=0
 velocityV=0
 
-knockbackDir=0
-global.player=id
+knockbackDir=0 
 
 // sprite variables
 idleSprite=spr_idle
@@ -76,6 +81,7 @@ hurtSprite=spr_hurt
           <argument>
             <kind>1</kind>
             <string>/// Attack delay
+
 </string>
           </argument>
         </arguments>
@@ -100,8 +106,7 @@ hurtSprite=spr_hurt
             <kind>1</kind>
             <string>///Knockback timer
 
-state=idle
-image_blend=-1
+state=idle_enemy
 image_speed=0.5
 </string>
           </argument>
@@ -127,10 +132,11 @@ image_speed=0.5
             <kind>1</kind>
             <string>///Player movement and attack
 
-get_input(self);
+if(hp&lt;=0)
+    state=death
+
 
 script_execute(state)
-show_debug_message(script_get_name(state))
 
 if(isInAir)
     perform_jump_arc()
@@ -159,11 +165,11 @@ if(hp&lt;=0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(other.parent!=global.player)
+            <string>if(other.parent==global.player)
 { 
     show_debug_message(string(hp))
     hp-=other.dmg
-    state=knockback
+    state=knockback_enemy
     if(abs(other.parent.x-x)&lt;12)
         knockbackDir = 0
     else if(other.parent.x&gt;x)

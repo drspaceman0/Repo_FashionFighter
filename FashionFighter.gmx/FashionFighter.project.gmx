@@ -44,11 +44,21 @@
       </scripts>
       <script>scripts\perform_jump_arc.gml</script>
     </scripts>
+    <scripts name="enemy">
+      <scripts name="enemy_states">
+        <script>scripts\idle_enemy.gml</script>
+        <script>scripts\approach_player.gml</script>
+        <script>scripts\attack_enemy.gml</script>
+        <script>scripts\knockback_enemy.gml</script>
+      </scripts>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>
+    <object>objects\obj_enemy_clone</object>
     <object>objects\obj_enemy</object>
     <object>objects\obj_hitbox</object>
+    <object>objects\object4</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
